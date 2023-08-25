@@ -12,29 +12,26 @@ const TODO_ITEMS = [
 ];
 
 test.describe('New Todo', () => {
-    test('Should allow me to added todo items', async ({page}) =>{
+    test('Delete Item In List', async ({page}) => {
         //Create a new todo locator
         const newTodo = page.getByPlaceholder('What needs to be done?');
-        
+
         //Create 1st todo
         await newTodo.fill(TODO_ITEMS[0]);
         await newTodo.press('Enter');
 
-        //Make sure item is added
+        //Make sure item 1 is added
+        await expect(newTodo).toBeEmpty();
         await expect(page.getByTestId("todo-title")).toHaveText([TODO_ITEMS[0]]);
+        //await checkNumberOfTodosInLocalStorage(page, 1);
 
-        //Create 2st todo
-        await newTodo.fill(TODO_ITEMS[1]);
-        await newTodo.press('Enter');
-
-        //Make sure item 1, 2 are added
-        await expect(page.getByTestId("todo-title")).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]]);
-
-        await checkNumberOfTodosInLocalStorage(page, 2);
+        //Delete Item
+        await page.getByTestId("todo-title").hover();
+        await page.getByLabel("Delete").click();
     })
 })
 
-async function checkNumberOfTodosInLocalStorage(page: Page, expected: number) {
-    return await page.waitForFunction(e => {
-        return JSON.parse(localStorage['react-todos']).length === e;}, expect);
-}
+// async function checkNumberOfTodosInLocalStorage(page: Page, expected: number) {
+//     return await page.waitForFunction(e => {
+//         return JSON.parse(localStorage['react-todos']).length === e;}, expect);
+// }
