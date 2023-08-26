@@ -29,6 +29,21 @@ test.describe('New Todo', () => {
         await page.getByTestId("todo-title").hover();
         await page.getByLabel("Delete").click();
     })
+
+    test('Clear complete', async ({page})=>{
+        const newTodo = page.getByPlaceholder('What needs to be done?');
+
+        //Create 1st todo
+        await newTodo.fill(TODO_ITEMS[0]);
+        await newTodo.press('Enter');
+
+        //Make sure item 1 is added
+        await expect(newTodo).toBeEmpty();
+        await expect(page.getByTestId("todo-title")).toHaveText([TODO_ITEMS[0]]);
+
+        //Select Item
+        await page.getByText()
+    })
 })
 
 // async function checkNumberOfTodosInLocalStorage(page: Page, expected: number) {
