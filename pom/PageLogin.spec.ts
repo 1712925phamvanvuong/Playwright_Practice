@@ -1,25 +1,25 @@
 import { Page } from "@playwright/test";
 
-export default class LoginPage{
+export default class PageLogin{
     constructor(public page: Page){
 
     }
 
-    buttonLogin: string = 'xpath button login';
-    fieldUserName: string = 'user name';
-    fieldPassword: string = 'password';
+    buttonLogin: string = "//input[@id='login-button']";
+    fieldEmail: string = 'E-Mail Address';
+    fieldPassword: string = 'Password';
 
-    async inputUserName(userName: string){
-        await this.page.getByTestId(this.fieldUserName).type(userName);
+    async inputUserName(email: string){
+        await this.page.getByPlaceholder(this.fieldEmail).type(email);
     }
 
     async inputPassword(password: string){
-        await this.page.getByTestId(this.fieldPassword).type(password);
+        await this.page.getByPlaceholder(this.fieldPassword).type(password);
     }
 
-    async login(userName: string, password: string){
-        console.debug('Input user name');
-        this.inputUserName(userName);
+    async login(email: string, password: string){
+        console.debug('Input email');
+        this.inputUserName(email);
         console.debug('Input password');
         this.inputPassword(password);
 
