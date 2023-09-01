@@ -5,16 +5,16 @@ export default class PageLogin{
 
     }
 
-    buttonLogin: string = "//input[@id='login-button']";
-    fieldEmail: string = 'E-Mail Address';
-    fieldPassword: string = 'Password';
+    buttonLogin: string = "//input[@value='Login']";
+    fieldEmail: string = "//input[@id='input-email']";
+    fieldPassword: string = "//input[@id='input-password']";
 
     async inputUserName(email: string){
-        await this.page.getByPlaceholder(this.fieldEmail).type(email);
+        await this.page.locator(this.fieldEmail).type(email);
     }
 
     async inputPassword(password: string){
-        await this.page.getByPlaceholder(this.fieldPassword).type(password);
+        await this.page.locator(this.fieldPassword).type(password);
     }
 
     async login(email: string, password: string){
@@ -22,7 +22,7 @@ export default class PageLogin{
         this.inputUserName(email);
         console.debug('Input password');
         this.inputPassword(password);
-
+        console.log('Click on button login')
         await this.page.locator(this.buttonLogin).click();
     }
 }

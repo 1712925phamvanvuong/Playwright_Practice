@@ -11,8 +11,10 @@ export default class PageRegister{
     fieldTelePhone: string = "//input[@id='input-telephone']";
     fieldPassword: string = "//input[@id='input-password']";
     fieldPasswordConfirm: string = "//input[@id='input-confirm']";
-    subscribe: string = "//input[@id='input-newsletter-yes']";
-    checkboxAgree: string = "//input[@id='input-agree']";
+    subscribeYes: string = "//label[@for='input-newsletter-yes']";
+    subscribeNo: string = "//label[@for='input-newsletter-no']";
+    checkboxAgree: string = "//label[@for='input-agree']";
+    buttonContinue: string = "//input[@value='Continue']";
 
     async registerUser(firstName: string, lastName: string, email: string, telephone: string, password: string, subscribe: boolean){
         console.debug('Input first name');
@@ -27,11 +29,17 @@ export default class PageRegister{
         await this.page.locator(this.fieldPassword).type(password);
         console.debug('Input password confirm');
         await this.page.locator(this.fieldPassword).type(password);
+        console.debug('Check subscribe default is No');
+        await this.page.locator(this.subscribeNo).isChecked();
         if(subscribe){
             console.debug('Select subscribe yes');
-            await this.page.locator(this.subscribe).click();
+            await this.page.locator(this.subscribeYes).click();
+            console.debug('Check subscribe is Yes')
+            await this.page.locator(this.subscribeYes).isChecked();
         }
         console.debug('Check I agree policy');
         await this.page.locator(this.checkboxAgree).click();
+        console.debug('Click on continue button');
+        await this.page.locator(this.buttonContinue).click();
     }
 }
