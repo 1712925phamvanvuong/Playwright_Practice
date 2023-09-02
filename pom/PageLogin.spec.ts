@@ -33,5 +33,5 @@ export default class PageLogin{
         await this.page.locator(this.alertWarning(message)).isVisible();
     }
 
-    async registerUser()
+    //async registerUser()
 }
