@@ -32,4 +32,6 @@ export default class PageLogin{
         console.log('Verify warning alert is displayed')
         await this.page.locator(this.alertWarning(message)).isVisible();
     }
+
+    async registerUser()
 }
