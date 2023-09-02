@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {HomePage} from '../pages/homePage';
+import { HomePage } from '../pages/homePage';
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
@@ -23,13 +23,12 @@ test.describe('pageObject example', () => {
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
     await homePage.goto('https://playwright.dev/');
-    // page.pause();
-  })
+  });
 
-  test('abc',async () => {
+  test('abc', async () => {
     await homePage.clickabc();
-    await homePage.verify();
+    // await homePage.verify(); -> eslint error for test must have expect
+    await expect(homePage.heading).toBeVisible();
     await homePage.wait(5000);
-  })
-
-})
+  });
+});
