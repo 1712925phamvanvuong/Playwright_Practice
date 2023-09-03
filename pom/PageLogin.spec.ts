@@ -1,15 +1,17 @@
 import { Page } from "@playwright/test";
+import PageRegister from "./PageRegister.spec";
+//import{PageRegister} from "./PageRegister.spec";
 
 export default class PageLogin{
     constructor(public page: Page){
 
-    }
+    };
 
     buttonLogin: string = "//input[@value='Login']";
     fieldEmail: string = "//input[@id='input-email']";
     fieldPassword: string = "//input[@id='input-password']";
     alertWarning(message: string){ return "//div[@class='alert alert-danger alert-dismissible'][text()='" + message + "']";}
-    buttonContinue: string = "//a[text()='Continue']";
+    buttonContinue: string = "//a[@class='btn btn-primary']";
 
     async inputUserName(email: string){
         await this.page.locator(this.fieldEmail).type(email);
@@ -33,5 +35,8 @@ export default class PageLogin{
         await this.page.locator(this.alertWarning(message)).isVisible();
     }
 
-    //async registerUser()
+    async registerUser(){
+        console.log("Click on button Continue to register user");
+        this.page.locator(this.buttonContinue).click();
+    }
 }
