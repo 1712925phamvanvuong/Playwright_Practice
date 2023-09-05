@@ -10,6 +10,6 @@ test.beforeEach(async ({page}) => {
 test.describe('Test Page Home', async()=>{
     test('test go to home page', async({page})=>{
         const  pageHome = new PageHome(page);
-        await pageHome.verifySearchButtonIsDisplayed();
+        await pageHome.verifySearchButtonSearchIsDisplayed();
     })
 })

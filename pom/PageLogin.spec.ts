@@ -1,10 +1,11 @@
-import { Page } from "@playwright/test";
+import { expect, Page, Locator } from "@playwright/test";
 import PageRegister from "./PageRegister.spec";
-//import{PageRegister} from "./PageRegister.spec";
+import {BaseTest} from "./BaseTest";
 
-export default class PageLogin{
-    constructor(public page: Page){
-
+export default class PageLogin extends BaseTest {
+    constructor(page: Page){
+        super(page);
+        
     };
 
     buttonLogin: string = "//input[@value='Login']";

@@ -2,17 +2,13 @@ import { Locator, Page, expect } from "@playwright/test";
 import { BaseTest } from "./BaseTest";
 
 export class PageHome extends BaseTest{
+    readonly searchButton: Locator
     constructor(page: Page){
         super(page);
+        this.searchButton = page.locator("//button[text()='Search']");
     }
     
-    searchButton: string = "//button[text()='Search']";
-
-    async verifyIsDisplayed(locator: string){
-        await this.page.locator(locator).isVisible();
-    }
-
-    async verifySearchButtonIsDisplayed(){
-        await this.verifyIsDisplayed(this.searchButton);
+    async verifySearchButtonSearchIsDisplayed(){
+        await this.searchButton.isVisible();
     }
 }
