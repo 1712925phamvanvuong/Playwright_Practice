@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/homePage';
+import { faker } from '@faker-js/faker';
+
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
@@ -22,6 +24,8 @@ test.describe('pageObject example', () => {
   let homePage: HomePage;
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
+    const random = faker.person.firstName();
+    console.log(random)
     await homePage.goto('https://playwright.dev/');
   });
 
