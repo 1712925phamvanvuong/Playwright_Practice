@@ -1,25 +1,31 @@
-import { expect, Page, Locator } from "@playwright/test";
+import { expect, Page, Locator, test } from "@playwright/test";
 import PageRegister from "./PageRegister.spec";
 import {BaseTest} from "./BaseTest";
 
 export default class PageLogin extends BaseTest {
+    readonly buttonLogin: Locator;
+    readonly fieldEmail: Locator;
+    readonly fieldPassword: Locator;
+    readonly buttonContinue: Locator;
+
     constructor(page: Page){
         super(page);
-        
+        this.buttonLogin = page.locator("//input[@value='Login']");
+        this.fieldEmail = page.locator("//input[@id='input-email']");
+        this.fieldPassword = page.locator("//input[@id='input-password']");
+        this.buttonContinue = page.locator("//a[@class='btn btn-primary']");
     };
 
-    buttonLogin: string = "//input[@value='Login']";
-    fieldEmail: string = "//input[@id='input-email']";
-    fieldPassword: string = "//input[@id='input-password']";
-    alertWarning(message: string){ return "//div[@class='alert alert-danger alert-dismissible'][text()='" + message + "']";}
-    buttonContinue: string = "//a[@class='btn btn-primary']";
-
+    alertWarning(message: string){
+        return "//div[@class='alert alert-danger alert-dismissible'][text()='" + message + "']";
+    }
+    
     async inputUserName(email: string){
-        await this.page.locator(this.fieldEmail).type(email);
+        await this.fieldEmail.type(email);
     }
 
     async inputPassword(password: string){
-        await this.page.locator(this.fieldPassword).type(password);
+        await this.fieldPassword.type(password);
     }
 
     async login(email: string, password: string){
@@ -28,7 +34,7 @@ export default class PageLogin extends BaseTest {
         console.debug('Input password');
         this.inputPassword(password);
         console.log('Click on button login')
-        await this.page.locator(this.buttonLogin).click();
+        await this.buttonLogin.click();
     }
 
     async verifyWaringIsDisplayed(message: string){
@@ -38,6 +44,6 @@ export default class PageLogin extends BaseTest {
 
     async registerUser(){
         console.log("Click on button Continue to register user");
-        this.page.locator(this.buttonContinue).click();
+        await this.buttonContinue.click();
     }
 }
