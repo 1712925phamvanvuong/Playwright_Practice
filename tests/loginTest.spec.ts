@@ -35,14 +35,17 @@ test.describe('Test page login', ()=>{
         const pageLogin = new PageLogin(page);
         await pageLogin.login(userdata[4].email, userdata[4].password);
         await pageLogin.verifyWaringIsDisplayed(' Warning: No match for E-Mail Address and/or Password.');
-        await page.screenshot({path: "demo.png", fullPage: true});
     })
 
-    test('Create new customer', async ({page}) => {
+    test('Create new customer', async ({page}, testInfo) => {
         const pageLogin = new PageLogin(page);
         const pageRegister = new PageRegister(page);
         await pageLogin.registerUser();
         await pageRegister.registerUser('test', 'userRegisterTest', 'registeruser@gmail.com', '09059999', '12345', true);
     })
+})
+
+test.afterEach(async({page}, testInfo)=>{
+    await page.screenshot({path: "Output/"  + testInfo.title +".png", fullPage: true});
 })
 
