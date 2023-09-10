@@ -1,10 +1,14 @@
 import {chromium, test, expect, type Page} from '@playwright/test';
 import PageLogin from '../pom/PageLogin.spec';
 import PageRegister from '../pom/PageRegister.spec';
+import { PageHome } from '../pom/PageHome';
 import * as userdata from '../data/login-data.json';
 
 test.beforeEach(async ({page}) => {
-    await page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=account/login');
+    let pageHome: PageHome;
+    pageHome = new PageHome(page);
+    await pageHome.goto('https://ecommerce-playground.lambdatest.io/');
+    await pageHome.login();
 });
 
 test.describe('Test page login', ()=>{
@@ -46,6 +50,8 @@ test.describe('Test page login', ()=>{
 })
 
 test.afterEach(async({page}, testInfo)=>{
+    if(testInfo.status!="passed"){
     await page.screenshot({path: "Output/"  + testInfo.title +".png", fullPage: true});
+    }
 })
 
