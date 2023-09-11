@@ -4,7 +4,7 @@ import { BaseTest } from "./BaseTest";
 export class PageHome extends BaseTest{
     readonly searchButton: Locator
     navigationButton(button: string){
-        return "//span[contains(text(),'"+ button +"')]/ancestor::li";
+        return "//ul[@class='navbar-nav horizontal']//span[@class='title'][normalize-space()='" + button + "']";
     }
     constructor(page: Page){
         super(page);
