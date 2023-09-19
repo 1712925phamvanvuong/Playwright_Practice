@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/homePage';
-import {GenerateUtils} from '../utils/generateUtils';
+import { GenerateUtils } from '../utils/generateUtils';
 import User from '../utils/user';
 
 test('has title', async ({ page }) => {
@@ -23,12 +23,12 @@ test('get started link', async ({ page }) => {
 test.describe('pageObject example', () => {
   let homePage: HomePage;
   let gen: GenerateUtils;
-  let us : User;
+  let us: User;
   let arrayUser: User[];
 
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
-    gen = new GenerateUtils;
+    gen = new GenerateUtils();
     await homePage.goto('https://playwright.dev/');
   });
 
@@ -39,7 +39,6 @@ test.describe('pageObject example', () => {
     us = gen.generateUser();
     console.log(us);
     arrayUser = gen.generateListOfUser(4);
-    console.log(arrayUser)
-    
+    console.log(arrayUser);
   });
 });
