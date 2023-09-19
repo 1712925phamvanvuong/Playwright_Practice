@@ -1,0 +1,31 @@
+[
+    {
+        "email": "starturetest@gmail.com",
+        "password": "123458x@X"
+    },
+
+    {
+        "email": "test",
+        "password": "abc"
+    },
+
+    {
+        "email": "",
+        "password": ""
+    },
+
+    {
+        "email": "test",
+        "password": "abc"
+    },
+
+    {
+        "email": "",
+        "password": "123458x@X"
+    },
+
+    {
+        "email": "abc@gmail",
+        "password": ""
+    }
+]
