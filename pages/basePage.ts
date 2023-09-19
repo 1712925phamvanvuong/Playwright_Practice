@@ -7,9 +7,8 @@ export class BasePage {
     this.page = page;
   }
 
-  async goto(url?: string) {
-    const link = url ? url : '/';
-    await this.page.goto(link);
+  async goto(url: string = '/') {
+    await this.page.goto(url);
   }
 
   async wait(time: number) {
