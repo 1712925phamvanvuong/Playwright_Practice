@@ -1,0 +1,19 @@
+[
+    {
+        "firstname": "test",
+        "lastname": "user",
+        "email": "abc@gmail.com",
+        "telephone": "09059999",
+        "password": "12345",
+        "subscribe": true
+    },
+
+    {
+        "firstname": "",
+        "lastname": "user",
+        "email": "abc@gmail.com",
+        "telephone": "09059999",
+        "password": "12345",
+        "subscribe": false
+    }
+]

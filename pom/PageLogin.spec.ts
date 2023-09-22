@@ -13,7 +13,7 @@ export default class PageLogin extends BaseTest {
         this.buttonLogin = page.locator("//input[@value='Login']");
         this.fieldEmail = page.locator("//input[@id='input-email']");
         this.fieldPassword = page.locator("//input[@id='input-password']");
-        this.buttonContinue = page.locator("//[@class='btn btn-primary']");
+        this.buttonContinue = page.locator("//a[@class='btn btn-primary'][text()='Continue']");
     };
 
     alertWarning(message: string){

@@ -27,6 +27,10 @@ export default class PageRegister extends BaseTest{
         this.lableAgree = page.locator("//label[@for='input-agree']");
     }
 
+    alertWarning(message: String){
+        return "//div[@class='alert alert-danger alert-dismissible'][contains(text(),'" + message + "')]";
+    }
+
     async registerUser(firstName: string, lastName: string, email: string, telephone: string, password: string, subscribe: boolean){
         console.debug('Input first name');
         await this.firstNameFieldInput.type(firstName);
@@ -52,5 +56,10 @@ export default class PageRegister extends BaseTest{
         await this.lableAgree.click();
         console.debug('Click on continue button');
         await this.buttonContinue.click();
+    }
+
+    async verifyWarningIsDisplayed(message: String){
+        console.log('Verify warning alert is displayed');
+        await this.page.locator(this.alertWarning(message)).isVisible();
     }
 }
