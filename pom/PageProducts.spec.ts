@@ -5,11 +5,13 @@ export default class PageProducts extends BaseTest{
     readonly buttonHome: Locator;
     readonly buttonFilter: Locator;
     readonly productCompareLink: Locator;
+    readonly addToCartButton: Locator;
     constructor(page: Page){
         super(page);
         this.buttonHome = page.locator("//i[@class='fa fa-home']");
         this.buttonFilter = page.locator("//i[@class='icon fas fa-filter']/..");
         this.productCompareLink = page.locator("//a[text()='Product Compare (0)']");
+        this.addToCartButton = page.locator("");
     };
 
     //Header title page of every type product
@@ -39,6 +41,6 @@ export default class PageProducts extends BaseTest{
         console.debug("Hover to image product")
         this.page.locator(this.productImage(title)).hover();
         console.debug("Click on add to cart button");
-        
+        this.page.locator(this.titleProduct(title) + "//ancestor::div[@class='product-thumb']//span[text()='Add to Cart']");
     }
 }
