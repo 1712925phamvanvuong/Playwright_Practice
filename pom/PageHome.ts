@@ -7,16 +7,16 @@ export class PageHome extends BaseTest{
     navigationButton(button: string){
         return "//ul[@class='navbar-nav horizontal']//span[@class='title'][normalize-space()='" + button + "']";
     }
+    sectionTitle(title: string){
+        return "//h3[text()='" + title +"']";
+    }
+
     constructor(page: Page){
         super(page);
         this.searchButton = page.locator("//button[text()='Search']");
         this.registerButton = page.locator("//span[normalize-space()='Register']");
     }
     
-    async verifySearchButtonSearchIsDisplayed(){
-        await this.searchButton.isVisible();
-    }
-
     async login(){
         await this.page.locator(this.navigationButton("My account")).click();
     }
@@ -24,5 +24,13 @@ export class PageHome extends BaseTest{
     async register(){
         await this.page.locator(this.navigationButton("My account")).hover();
         await this.registerButton.click();
+    }
+
+    async verifySearchButtonSearchIsDisplayed(){
+        await this.searchButton.isVisible();
+    }
+
+    async verifySectionTitle(title: string){
+        await this.page.locator(this.sectionTitle(title)).isVisible();
     }
 }
